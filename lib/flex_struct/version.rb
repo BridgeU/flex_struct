@@ -1,3 +1,3 @@
-module FlexStruct
-  VERSION = "0.1.0"
+class FlexStruct
+  VERSION = "0.1.0".freeze
 end
