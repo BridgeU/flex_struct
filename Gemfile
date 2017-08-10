@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 
-git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
-
-# Specify your gem's dependencies in flex_struct.gemspec
 gemspec
+
+# Gems which aren't development dependencies, but are useful for development
+gem "guard-bundler"
+gem "guard-rspec"

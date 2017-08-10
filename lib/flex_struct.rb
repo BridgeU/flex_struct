@@ -1,5 +1,4 @@
-require "flex_struct/version"
-
-module FlexStruct
+class FlexStruct < Struct
+  autoload :VERSION, "flex_struct/version"
   # Your code goes here...
 end
