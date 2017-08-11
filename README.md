@@ -4,6 +4,8 @@ A drop-in replacement for Struct which adds a more flexible initialize method
 
 ## Usage
 
+### Basic
+
 Create a `FlexStruct` very similarly to how you'd use any other `Struct`:
 
     Pet = FlexStruct.new(:species, :name, :colour)
@@ -24,6 +26,35 @@ default `Struct`s:
       pet.species = :cat
       pet.colour = :tortoiseshell
     end
+
+### Customisation
+
+`FlexStruct` acts just like a `Struct` in other ways, you can customize its
+behaviour and add functionality to the generated class by passing a block to the
+`FlexStruct` constructor:
+
+    Person = FlexStruct.new(:forename, :surname) do
+      def fullname
+        [forename, surname].compact.join(" ")
+      end
+    end
+
+    Person.new(forename: "Finn", surname: "Mertens").fullname
+    # => "Finn Mertens"
+
+It's possible to overwrite the `initialize` method this way - so be sure to use
+`super` if you do this. Or better, don't do this, you probably don't need to.
+
+### Immutability
+
+`FlexStruct` comes with a convenience method for making immutable `Struct`s. This
+will amend the generated struct to make it frozen after initialization:
+
+    Position = FlexStruct.new(:lat, :lng) { prepend FlexStruct::Frozen }
+
+    location = Position.new(lat: 44.681, lng: 169.101)
+    location.lat = -70.850
+    # => RuntimeError: can't modify frozen Position
 
 ## Why?
 

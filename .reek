@@ -1,0 +1,6 @@
+ModuleInitialize:
+  exclude:
+    - FlexStruct::Frozen
+    - FlexStruct::Initializer
+
+# vim: set ft=yaml:

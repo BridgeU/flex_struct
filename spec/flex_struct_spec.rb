@@ -91,5 +91,28 @@ RSpec.describe FlexStruct do
       expect(struct.bar).to eq(456)
       expect(struct.baz).to eq(789)
     end
+
+    it "is mutable" do
+      struct = subject.new(foo: 123)
+
+      struct.foo = 456
+
+      expect(struct.foo).to eq(456)
+    end
+  end
+
+  describe "instance created with FlexStruct::Frozen" do
+    subject do
+      # Returns a class object created by Struct
+      described_class.new(:foo, :bar, :baz) do
+        prepend FlexStruct::Frozen
+      end
+    end
+
+    it "is frozen" do
+      struct = subject.new(foo: 123)
+
+      expect { struct.foo = 456 }.to raise_error(RuntimeError)
+    end
   end
 end

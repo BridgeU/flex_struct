@@ -1,6 +1,7 @@
 # A drop-in replacement for Struct which adds a more flexible initialize method
 class FlexStruct
   autoload :VERSION, "flex_struct/version"
+  autoload :Frozen, "flex_struct/frozen"
   autoload :Initializer, "flex_struct/initializer"
 
   def self.new(*args, &block)
