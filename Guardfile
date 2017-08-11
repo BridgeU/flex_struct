@@ -24,3 +24,5 @@ guard :rspec, cmd: "bundle exec rspec" do
   ruby = dsl.ruby
   dsl.watch_spec_files_for(ruby.lib_files)
 end
+
+# vim: set ft=ruby:
