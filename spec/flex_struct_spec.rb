@@ -11,6 +11,16 @@ RSpec.describe FlexStruct do
 
       klass.new
     end
+
+    it "can add methods to the new class with a block argument" do
+      klass = described_class.new(:foo, :bar) do
+        def forty_two
+          42
+        end
+      end
+
+      expect(klass.new.forty_two).to eq(42)
+    end
   end
 
   describe "instance" do
