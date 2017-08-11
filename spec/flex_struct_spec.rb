@@ -21,6 +21,24 @@ RSpec.describe FlexStruct do
 
       expect(klass.new.forty_two).to eq(42)
     end
+
+    describe "with a block argument" do
+      it "allows the new initialize method to be called as `super`" do
+        klass = described_class.new(:foo, :bar) do
+          def initialize(*)
+            super
+            self.bar = foo + 1
+          end
+        end
+
+        struct = klass.new(foo: 123)
+
+        # Don't break the existing initializer
+        expect(struct.foo).to eq(123)
+
+        expect(struct.bar).to eq(124)
+      end
+    end
   end
 
   describe "instance" do
